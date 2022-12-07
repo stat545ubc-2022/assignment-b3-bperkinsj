@@ -31,10 +31,11 @@ ui <- fluidPage(
       uiOutput("countryOutput")
     ),
     mainPanel(
+      h3('Drink Selection', align='center'),
       plotOutput("coolplot"),
       br(), br(),
 # Feature 2
-      textOutput('totaldrinks'),
+      h5(textOutput('totaldrinks'), align='center'),
       br(), br(),
 # Feature 1
       DT::dataTableOutput("results"),
