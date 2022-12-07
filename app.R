@@ -41,7 +41,7 @@ ui <- fluidPage(
       DT::dataTableOutput("results"),
       br(), br(),
 # Feature 3
-      downloadButton('downloadData', 'Download')
+      downloadButton('downloadData', 'Download Selection')
     )
   )
 )
