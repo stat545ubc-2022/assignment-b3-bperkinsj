@@ -1,6 +1,6 @@
 # Assignment B3 (& B4): An updated BC Liquors App
 
-Welcome to the repository for my assignments B3 and B4! For this assignment, I decided to update the BC Liquors app created by Dean Attali. There are 7 features including 3 inputs and 3 outputs:
+Welcome to the repository for my assignments B3 and B4! For these assignments, I decided to update the BC Liquors app created by Dean Attali. There are 7 features including 3 inputs and 3 outputs:
 
 #### Inputs
 
