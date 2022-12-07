@@ -35,7 +35,7 @@ ui <- fluidPage(
       plotOutput("coolplot"),
       br(), br(),
 # Feature 2
-      h5(textOutput('totaldrinks'), align='center'),
+      h4(textOutput('totaldrinks'), align='center'),
       br(), br(),
 # Feature 1
       DT::dataTableOutput("results"),
