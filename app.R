@@ -2,6 +2,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(DT)
+library(stringr)
 
 # First added feature: I used the DataTable package to create an
 # interactive table output, allowing the user to sort the results 
@@ -72,7 +73,9 @@ server <- function(input, output) {
   })
 # Feature 2
   output$totaldrinks <- renderText({
-    paste('Number of drinks:', nrow(filtered()))
+    paste('Total number of bottles of ', tolower(input$typeInput),
+          ' between $', input$priceInput[1], ' and $', input$priceInput[2],
+          ' from ', str_to_title(input$countryInput), ':', nrow(filtered()))
   })
 # Feature 1
   output$results <- DT::renderDataTable({
