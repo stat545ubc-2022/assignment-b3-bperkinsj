@@ -4,18 +4,11 @@ library(dplyr)
 library(DT)
 library(stringr)
 
-# First added feature: I used the DataTable package to create an
-# interactive table output, allowing the user to sort the results 
-# as they desire. The modifications necessary for this are under
-# the comments "Feature 1".
-# Second added feature: I added an output that shows the user how
-# many drinks fit their specified restrictions. This gives the user
-# an idea of the drink availability without having to scroll through
-# the entire table. Modifications necessary for this are under the 
-# comments "Feature 2".
-# Third added feature: I added a download button that lets the user 
-# download their filtered table. Modifications necessary for this
-# are under the comments 'Feature 3'. 
+# This app contains 3 inputs and 3 outputs. The user inputs the price range,
+# type of drink, and country of origin. The app outputs a plot of the 
+# appropriate drinks, a short sentence saying how many drinks fit the 
+# specifications, and a table containing the information for the appropriate
+# drinks. The user has the option to download this table.
 
 bcl <- read.csv("bcl-data.csv", stringsAsFactors = FALSE)
 
@@ -24,29 +17,42 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       "Find your drink selections!",
+      
+      # Choose price range
       sliderInput("priceInput", "Price", 0, 100, c(25, 40), pre = "$"),
+      
+      # Choose type of drink
       selectInput("typeInput", "Product type",
                    choices = c("BEER", "REFRESHMENT", "SPIRITS", "WINE"),
                    selected = "WINE"),
+      
+      # Outputs country choice
       uiOutput("countryOutput")
     ),
     mainPanel(
       h3('Drink Selection', align='center'),
+      
+      # Drink selection plot
       plotOutput("coolplot"),
       br(), br(),
-# Feature 2
+
+      # Total number of drinks found
       h4(textOutput('totaldrinks'), align='center'),
       br(), br(),
-# Feature 1
+
+      # Results table
       DT::dataTableOutput("results"),
       br(), br(),
-# Feature 3
+
+      # Button to download results table as a csv file
       downloadButton('downloadData', 'Download Selection')
     )
   )
 )
 
 server <- function(input, output) {
+  
+  # Choose country of origin
   output$countryOutput <- renderUI({
     selectInput("countryInput", "Country",
                 sort(unique(bcl$Country)),
